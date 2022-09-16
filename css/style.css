@@ -638,4 +638,7 @@ header #menu-btn {
   html {
     font-size: 50%;
   }
+  .video img{
+    width: 45rem;
+  }
 }/*# sourceMappingURL=style.css.map */
