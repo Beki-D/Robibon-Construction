@@ -709,12 +709,15 @@ header{
 }
 
 @media (max-width:450px){
+   .home .home-slider{
+      overflow: hidden;
+   }
 
    .about{
       .row{
          .video{
             img{
-               width: 47rem;
+               width: 45rem;
             }
          }
       }

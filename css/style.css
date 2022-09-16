@@ -289,7 +289,7 @@ header #menu-btn {
   gap: 3rem;
 }
 .about .row .video {
-  flex: 1 1 41rem;
+  flex: 1 1 20rem;
 }
 .about .row .video image {
   width: 100%;
@@ -635,10 +635,13 @@ header #menu-btn {
   }
 }
 @media (max-width: 450px) {
+  .home .home-slider {
+    overflow: hidden;
+  }
+  .about .row .video img {
+    width: 45rem;
+  }
   html {
     font-size: 50%;
-  }
-  .video img{
-    width: 45rem;
   }
 }/*# sourceMappingURL=style.css.map */
