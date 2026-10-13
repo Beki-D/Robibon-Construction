@@ -1,8 +1,13 @@
 @use '../mixins' as *;
 
 // Image wrapper with a blurred placeholder underneath; the real image fades in once it has decoded.
+// Global rule: a photo always fills its container edge to edge (object-fit: cover), at any viewport size, so no
+// empty strip can appear below it. Containers just need a size (height, aspect-ratio or absolute inset).
+// Opt out with .photo--natural for images that should keep their own proportions.
 .photo {
   position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background: var(--color-ink-raised);
 
@@ -16,11 +21,18 @@
 
   &__img {
     position: relative;
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     opacity: 0;
     transition: opacity 0.7s ease;
+  }
+
+  &--natural,
+  &--natural &__img {
+    height: auto;
   }
 
   &.is-loaded &__img {
