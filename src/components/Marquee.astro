@@ -1,0 +1,22 @@
+---
+import { SITE } from '../config/site'
+
+// Credentials strip under the hero. Every item comes from the company's existing copy.
+const ITEMS = [
+  'GC-1 General Contractor',
+  'WWC-1 Water Works Contractor',
+  'ISO 9001:2015',
+  'Since 2015',
+  SITE.address,
+]
+---
+
+<section class="marquee" aria-label="Company credentials">
+  <div class="marquee__track">
+    {[0, 1].map((copy) => (
+      <ul class="marquee__list" aria-hidden={copy === 1 ? 'true' : undefined}>
+        {ITEMS.map((item) => <li>{item}</li>)}
+      </ul>
+    ))}
+  </div>
+</section>

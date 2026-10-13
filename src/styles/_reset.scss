@@ -63,6 +63,10 @@ ul {
   outline-offset: 3px;
 }
 
+.surface-paper :focus-visible {
+  outline-color: var(--color-primary-deep);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

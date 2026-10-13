@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro'
 import Photo from '../components/Photo.astro'
 import Icon from '../components/Icon.astro'
 import Cta from '../components/Cta.astro'
+import Marquee from '../components/Marquee.astro'
 import { SERVICES, HERO_SLIDES, HOME_ABOUT, MISSION } from '../data/content'
 import { PROJECTS } from '../data/projects'
 import { galleryFor } from '../lib/gallery'
@@ -28,6 +29,8 @@ const galleries = await Promise.all(PROJECTS.map(galleryFor))
     <a href="#about" class="hero__scroll" aria-label="Scroll to content"><Icon name="down" /></a>
     <span class="hero__gradient"></span>
   </section>
+
+  <Marquee />
 
   <section class="intro section-scale surface-paper" id="about">
     <div class="background-scale"></div>

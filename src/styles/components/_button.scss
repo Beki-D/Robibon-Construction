@@ -1,6 +1,7 @@
 @use '../mixins' as *;
 
-// Pill button with a wipe fill on hover (same mechanic as the Weitz clone's .button-v2).
+// Pill button with a wipe fill on hover. Outline buttons fill with --color-primary-strong and flip to white text
+// (4.9:1); on light sections the outline and text use the deeper green (6.0:1).
 .button {
   position: relative;
   z-index: 0;
@@ -19,7 +20,8 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-primary);
-  transition: color 0.3s var(--ease-snap);
+  cursor: pointer;
+  transition: color 0.3s var(--ease-snap), border-color 0.3s ease;
 
   &::after {
     content: '';
@@ -27,25 +29,34 @@
     z-index: -1;
     inset: 0 auto 0 0;
     width: 0;
-    background: var(--gradient-brand);
+    background: var(--color-primary-strong);
     transition: width 0.3s var(--ease-wipe);
   }
 
   &:hover,
   &:focus-visible {
-    color: var(--color-ink);
-    &::after { width: 100%; }
-  }
-
-  &--solid {
-    color: var(--color-ink);
-    &::after { width: 100%; }
-    background: var(--gradient-brand);
-    border-color: transparent;
-  }
-
-  &--solid:hover {
     color: var(--color-white);
+    border-color: var(--color-primary-strong);
+    &::after { width: 100%; }
+  }
+
+  .surface-paper & {
+    color: var(--color-primary-deep);
+    border-color: var(--color-primary-deep);
+    &:hover,
+    &:focus-visible { color: var(--color-white); }
+  }
+
+  // Filled: green with white text; hover deepens the green.
+  &--solid,
+  .surface-paper &--solid {
+    color: var(--color-white);
+    background: var(--color-primary-strong);
+    border-color: var(--color-primary-strong);
+
+    &::after { background: var(--color-primary-deep); }
+    &:hover,
+    &:focus-visible { border-color: var(--color-primary-deep); }
   }
 
   @media (hover: none), (prefers-reduced-motion: reduce) {

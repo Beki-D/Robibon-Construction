@@ -76,9 +76,9 @@ function initHero() {
   // fromTo with explicit values so reloading mid-page can't leave the fill stuck.
   gsap.fromTo(
     title,
-    { backgroundPosition: '100% 50%' },
+    { '--fill': '100%' },
     {
-      backgroundPosition: '0% 50%',
+      '--fill': '0%',
       ease: 'none',
       scrollTrigger: { trigger: hero, start: 'top 0', end: '+=90%', pin: true, scrub: true },
     },
@@ -96,7 +96,7 @@ function initPageHero() {
   const title = document.querySelector('.page-hero__title')
   if (!title) return
   whenRevealed().then(() => {
-    gsap.fromTo(title, { backgroundPosition: '100% 50%' }, { backgroundPosition: '0% 50%', duration: 1.8, ease: 'power2.inOut' })
+    gsap.fromTo(title, { '--fill': '100%' }, { '--fill': '0%', duration: 1.8, ease: 'power2.inOut' })
     gsap.from('.page-hero__crumbs', { y: 20, opacity: 0, duration: 0.9, delay: 0.5, ease: 'power3.out' })
   })
 }
@@ -141,9 +141,9 @@ function fillQuote(quote) {
 function fillOnScroll(element) {
   gsap.fromTo(
     element,
-    { backgroundPosition: '100% 50%' },
+    { '--fill': '100%' },
     {
-      backgroundPosition: '0% 50%',
+      '--fill': '0%',
       ease: 'none',
       scrollTrigger: { trigger: element, start: 'top 85%', end: 'top 35%', scrub: true },
     },

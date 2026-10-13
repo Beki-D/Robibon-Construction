@@ -57,7 +57,7 @@
     line-height: 1.5;
 
     .icon { margin-top: 0.3rem; color: var(--color-primary); }
-    a:hover { color: var(--color-secondary); }
+    a:hover { color: var(--color-primary); }
   }
 
   &__location {
@@ -65,12 +65,31 @@
     min-width: 0;
   }
 
+  // Oversized frosted-outline wordmark, purely decorative.
+  &__wordmark {
+    margin-top: 7rem;
+    font-family: var(--font-display);
+    font-size: clamp(9rem, 22.5vw, 30rem);
+    font-weight: 700;
+    line-height: 0.8;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-align: center;
+    background: var(--glass);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 1px rgba(29, 159, 116, 0.5);
+    user-select: none;
+    overflow: hidden;
+  }
+
   &__credits {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 1rem 3rem;
-    margin-top: 8rem;
+    margin-top: 5rem;
     padding-top: 3rem;
     border-top: 1px solid var(--color-line);
     font-size: 1.4rem;

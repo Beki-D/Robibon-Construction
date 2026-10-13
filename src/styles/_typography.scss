@@ -78,11 +78,29 @@ p {
 
 // Small uppercase label used above section headings.
 .eyebrow {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
   margin-bottom: 2.4rem;
   font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--color-primary);
+
+  &::before {
+    content: '';
+    width: 3.6rem;
+    height: 2px;
+    background: currentColor;
+  }
+}
+
+.surface-paper .eyebrow {
+  color: var(--color-primary-deep);
+}
+
+.quote .eyebrow,
+.cta .eyebrow {
+  justify-content: center;
 }

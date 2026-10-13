@@ -1,0 +1,55 @@
+@use '../mixins' as *;
+
+// Slow credentials ticker. White on --color-primary-strong (4.9:1). Static and wrapped under reduced motion.
+.marquee {
+  overflow: hidden;
+  background: var(--color-primary-strong);
+  color: var(--color-white);
+
+  &__track {
+    display: flex;
+    width: max-content;
+    animation: marquee 48s linear infinite;
+  }
+
+  &:hover &__track { animation-play-state: paused; }
+
+  &__list {
+    display: flex;
+    flex: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    padding: 2.6rem 0;
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    // diamond separator
+    &::after {
+      content: '';
+      width: 0.8rem;
+      height: 0.8rem;
+      margin: 0 3.6rem;
+      background: rgba(255, 255, 255, 0.55);
+      transform: rotate(45deg);
+    }
+  }
+
+  @include max(600) { li { font-size: 2rem; padding: 2rem 0; } }
+
+  @include reduced-motion {
+    &__track { width: auto; animation: none; justify-content: center; }
+    &__list:nth-child(2) { display: none; }
+    &__list { flex-wrap: wrap; justify-content: center; }
+  }
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}

@@ -1,9 +1,14 @@
 // Design tokens: the single source for colour, type, spacing and motion. Component styles reference these only.
 :root {
   // Brand
+  // Green leads. Blue is a rare accent (hero fill tail, CTA fill tail, focus ring on dark).
+  // Contrast: --color-primary on ink 5.6:1 | white on --color-primary-strong 4.9:1 | --color-primary-deep on paper 6.0:1.
   --color-primary: #1d9f74;
+  --color-primary-strong: #14805b;
+  --color-primary-deep: #0f6b4b;
   --color-secondary: #2aa6e4;
-  --gradient-brand: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  // Frosted tint inside outlined letters before the green fill reaches them.
+  --glass: linear-gradient(180deg, rgba(223, 232, 228, 0.2) 0%, rgba(29, 159, 116, 0.1) 100%);
 
   // Surfaces and text
   --color-ink: #0a1411;
