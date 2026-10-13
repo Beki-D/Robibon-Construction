@@ -22,7 +22,7 @@ import { SITE } from '../config/site'
           <div class="contact__card"><Icon name="clock" /><div><h4>Working hours</h4>{SITE.hours.map((line) => <p>{line}</p>)}</div></div>
         </div>
 
-        <form class="form content-fade" id="contact-form" novalidate={false}>
+        <form class="form content-fade" id="contact-form">
           <h3>Get in touch</h3>
           <input type="hidden" name="contact_number" />
           <div class="form__row">

@@ -2,7 +2,7 @@ import { gsap } from 'gsap'
 
 const root = document.documentElement
 const MIN_VISIBLE_MS = 700
-const MAX_WAIT_MS = 9000
+const MAX_WAIT_MS = 6000
 const SEEN_KEY = 'rob-intro'
 
 /**

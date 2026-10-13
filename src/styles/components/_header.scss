@@ -119,7 +119,7 @@
     transform: translateY(-50%);
   }
 
-  span {
+  &__icon > span {
     position: absolute;
     left: 0;
     width: 100%;
@@ -133,7 +133,7 @@
     &:nth-child(3) { bottom: 0; }
   }
 
-  &[aria-expanded='true'] span {
+  &[aria-expanded='true'] &__icon > span {
     &:nth-child(1) { top: calc(50% - 1.5px); transform: rotate(45deg); }
     &:nth-child(2) { opacity: 0; }
     &:nth-child(3) { bottom: calc(50% - 1.5px); transform: rotate(-45deg); }
