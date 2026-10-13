@@ -50,9 +50,9 @@
   }
 
   &__content {
-    width: 100rem;
-    max-width: 90%;
-    margin-top: 12vh;
+    width: 120rem;
+    max-width: 94%;
+    margin-top: 10vh;
 
     @include max(1270) { margin-left: 3vw; }
     @include max(600) { max-width: 100%; margin: 6vh 0 0; }
@@ -62,15 +62,15 @@
     @include outline-fill(1px);
     margin: 0;
     padding-right: 5rem;
-    font-size: clamp(5.4rem, 9.6vw, 13.6rem);
+    font-size: clamp(5rem, 8.4vw, 12rem);
     line-height: 1;
 
     @include max(880) { -webkit-text-stroke-width: 0.75px; }
   }
 
   &__sub {
-    margin: 5.5rem 0 0;
-    max-width: 62rem;
+    margin: 4.5rem 0 0;
+    max-width: 50rem;
     font-size: 2.2rem;
     font-weight: 300;
     line-height: 1.5;

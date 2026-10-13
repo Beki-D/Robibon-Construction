@@ -3,8 +3,8 @@
  * 1.5 MB webfont kit from the old site is gone.
  */
 import {
-  faRoad,
-  faCity,
+  faRoadBridge,
+  faBuilding,
   faWater,
   faHouse,
   faBullseye,
@@ -29,8 +29,8 @@ import {
 import { faClock } from '@fortawesome/free-regular-svg-icons'
 
 export const ICONS = {
-  road: faRoad,
-  building: faCity,
+  road: faRoadBridge,
+  building: faBuilding,
   dam: faWater,
   home: faHouse,
   mission: faBullseye,

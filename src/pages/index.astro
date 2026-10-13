@@ -21,7 +21,7 @@ const galleries = await Promise.all(PROJECTS.map(galleryFor))
     </div>
     <div class="wrap">
       <div class="hero__content">
-        <h1 class="hero__title">Your reliable partner for creating the future</h1>
+        <h1 class="hero__title">Your reliable<br />partner for<br />creating the future</h1>
         <p class="hero__sub">Roads, buildings and dams, built to last. Since 2015, turning aspirations into concrete reality.</p>
       </div>
     </div>
@@ -33,7 +33,7 @@ const galleries = await Promise.all(PROJECTS.map(galleryFor))
     <div class="background-scale"></div>
     <div class="wrap row-v2">
       <div class="intro__grid">
-        <div class="intro__media content-fade"><Photo name="adama-road-3.webp" alt="Completed asphalt road in Adama" sizes="(max-width: 1000px) 100vw, 600px" /></div>
+        <div class="intro__media content-fade"><Photo name="adama-road-4.webp" alt="Completed asphalt road in Adama" sizes="(max-width: 1000px) 100vw, 600px" /></div>
         <div class="intro__text">
           <span class="eyebrow content-fade">About us</span>
           <h2 class="content-fade">Your reliable partner for <span class="accent">creating the future</span></h2>
@@ -55,6 +55,7 @@ const galleries = await Promise.all(PROJECTS.map(galleryFor))
           <div class="services__item">
             <Icon name={service.icon} />
             <h3>{service.title}</h3>
+            {service.text && <p>{service.text}</p>}
             {service.note && <p class="services__item-note">({service.note})</p>}
           </div>
         ))}
