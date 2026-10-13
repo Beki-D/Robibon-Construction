@@ -5,7 +5,7 @@ Part of the `Rob/` folder: `public_html/` is the old live site, `v1-repo-2022/` 
 
 ## Run
 
-pnpm only. Scripts call `node node_modules/astro/bin/astro.mjs` because the parent folder name contains a `:`.
+pnpm only. Scripts call `node node_modules/astro/bin/astro.mjs` so they work without relying on PATH. (The parent folder used to be `UI:UX Websites`; the colon broke the Vite dev server, so it was renamed.)
 
     pnpm install
     pnpm run dev       # http://localhost:4321
