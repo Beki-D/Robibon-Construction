@@ -10,21 +10,21 @@
 
   <!-- About Page -->
   <url>
-    <loc>https://www.robibonconstruction.com/about.html</loc>
+    <loc>https://www.robibonconstruction.com/about</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Projects Page -->
   <url>
-    <loc>https://www.robibonconstruction.com/projects.html</loc>
+    <loc>https://www.robibonconstruction.com/projects</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Contact Page -->
   <url>
-    <loc>https://www.robibonconstruction.com/contact.html</loc>
+    <loc>https://www.robibonconstruction.com/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
