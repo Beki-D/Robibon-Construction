@@ -1,0 +1,91 @@
+@use 'mixins' as *;
+
+.wrap {
+  position: relative;
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+
+  @include max(1270) {
+    width: calc(100% - 4rem);
+    margin: 0 2rem;
+    max-width: 100%;
+  }
+
+  @include max(880) {
+    width: calc(100% - 3rem);
+    margin: 0 1.5rem;
+  }
+}
+
+.row-v2 {
+  position: relative;
+  padding: var(--section-pad) 0 calc(var(--section-pad) + 0.8rem);
+}
+
+// Surfaces
+.surface-dark {
+  background: var(--color-ink);
+  color: var(--color-light);
+}
+
+.surface-paper {
+  background: var(--color-paper);
+  color: var(--color-ink);
+
+  h2,
+  h3 {
+    color: var(--color-ink);
+  }
+}
+
+// Scroll-driven section scale: the background layer grows to full width (wide screens) or the section scales up
+// (narrow screens). The animation itself lives in scripts/motion.js.
+.section-scale {
+  position: relative;
+
+  @include max(1300) { transform: scale(0.96); }
+  @include max(880) { transform: scale(0.93); }
+  @include max(600) { transform: scale(0.9); }
+  @include reduced-motion { transform: none; }
+
+  .background-scale {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 50%;
+    width: 90%;
+    height: 100%;
+    overflow: hidden;
+    transform: translateX(-50%) translate3d(0, 0, 0);
+
+    @include max(1500) { width: 93%; }
+    @include max(1400) { width: 96%; }
+    @include max(1300) { width: 100%; }
+    @include reduced-motion { width: 100% !important; }
+  }
+}
+
+.section-scale.surface-paper .background-scale {
+  background: var(--color-paper);
+}
+
+.section-scale.surface-dark .background-scale {
+  background: var(--color-ink-raised);
+}
+
+.section-heading {
+  margin-bottom: 7rem;
+  max-width: 90rem;
+
+  @include max(600) { margin-bottom: 4.5rem; }
+}
+
+// Subtle outline-to-gradient accent used on a single highlighted word in headings.
+.accent {
+  color: var(--color-primary);
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

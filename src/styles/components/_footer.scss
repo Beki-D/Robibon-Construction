@@ -1,0 +1,81 @@
+@use '../mixins' as *;
+
+.footer {
+  padding: 10rem 0 4rem;
+  background: var(--color-ink-raised);
+  border-top: 1px solid var(--color-line);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 6rem;
+
+    @include max(1000) { grid-template-columns: 1fr 1fr; gap: 5rem; }
+    @include max(600) { grid-template-columns: 1fr; gap: 4rem; }
+  }
+
+  &__logo {
+    width: 8.5rem;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    font-size: 3.2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    span { color: var(--color-primary); }
+  }
+
+  &__heading {
+    margin-bottom: 2.4rem;
+    font-family: var(--font-sans);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  &__links,
+  &__info {
+    display: grid;
+    gap: 1.4rem;
+  }
+
+  &__links a {
+    width: fit-content;
+    font-size: 1.8rem;
+    transition: color 0.3s ease, transform 0.3s var(--ease-out);
+
+    &:hover { color: var(--color-primary); transform: translateX(0.6rem); }
+  }
+
+  &__info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.4rem;
+    line-height: 1.5;
+
+    .icon { margin-top: 0.3rem; color: var(--color-primary); }
+    a:hover { color: var(--color-secondary); }
+  }
+
+  &__location {
+    margin-top: 3rem;
+    min-width: 0;
+  }
+
+  &__credits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem 3rem;
+    margin-top: 8rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-line);
+    font-size: 1.4rem;
+    opacity: 0.75;
+
+    a { color: var(--color-primary); }
+  }
+}

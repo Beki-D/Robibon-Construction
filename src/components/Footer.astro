@@ -1,0 +1,39 @@
+---
+import { NAV, SITE } from '../config/site'
+import Icon from './Icon.astro'
+
+const year = new Date().getFullYear()
+---
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <span class="logo footer__logo" role="img" aria-label="ROBIBON logo"></span>
+        <h2 class="footer__title">Robibon <span>Construction</span></h2>
+      </div>
+
+      <div>
+        <h3 class="footer__heading">Explore</h3>
+        <nav class="footer__links" aria-label="Footer">
+          {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+        </nav>
+      </div>
+
+      <div>
+        <h3 class="footer__heading">Get in touch</h3>
+        <div class="footer__info">
+          <div class="footer__info-row"><Icon name="location" /><span>{SITE.address}</span></div>
+          <div class="footer__info-row"><Icon name="phone" /><a href={SITE.phone.href}>{SITE.phone.display}</a></div>
+          <div class="footer__info-row"><Icon name="email" /><a href={`mailto:${SITE.email}`}>{SITE.email}</a></div>
+        </div>
+        <a href="/contact#map" class="button footer__location"><Icon name="map" /> Our location</a>
+      </div>
+    </div>
+
+    <div class="footer__credits">
+      <span>Designed by <a href={SITE.credit.href} target="_blank" rel="noopener">{SITE.credit.label}</a></span>
+      <span>&copy; {year} {SITE.name}. All rights reserved.</span>
+    </div>
+  </div>
+</footer>

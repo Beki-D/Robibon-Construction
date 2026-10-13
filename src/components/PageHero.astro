@@ -1,0 +1,21 @@
+---
+import Photo from './Photo.astro'
+
+interface Props {
+  title: string
+  photo: string
+}
+
+const { title, photo } = Astro.props
+---
+
+<section class="page-hero">
+  <div class="page-hero__bg"><Photo name={photo} eager sizes="100vw" class="page-hero__photo" /></div>
+  <div class="wrap">
+    <h1 class="page-hero__title">{title}</h1>
+    <ul class="page-hero__crumbs">
+      <li><a href="/">Home</a></li>
+      <li>{title}</li>
+    </ul>
+  </div>
+</section>

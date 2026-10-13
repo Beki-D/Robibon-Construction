@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro'
+import PageHero from '../components/PageHero.astro'
+import Photo from '../components/Photo.astro'
+import Icon from '../components/Icon.astro'
+import Cta from '../components/Cta.astro'
+import { ABOUT_PARAGRAPHS, CORE_VALUES, GOALS, MISSION, SERVICES, VISION } from '../data/content'
+---
+
+<Base title="About" path="/about" description="Learn about ROBIBON Construction: a Grade One General Contractor (GC-1) and Water Works General Contractor (WWC-1) building roads, buildings and dams in Ethiopia.">
+  <PageHero title="About us" photo="sululta-road-2.webp" />
+
+  <section class="story section-scale surface-paper">
+    <div class="background-scale"></div>
+    <div class="wrap row-v2">
+      <div class="story__grid">
+        <div class="story__media content-fade"><Photo name="sululta-road-3.webp" alt="Sululta asphalt road project" sizes="(max-width: 1000px) 100vw, 550px" /></div>
+        <div class="story__text">
+          <span class="eyebrow content-fade">Who we are</span>
+          {ABOUT_PARAGRAPHS.map((text) => <p class="content-fade">{text}</p>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="policy surface-dark">
+    <div class="wrap row-v2">
+      <div class="policy__box">
+        <span class="eyebrow content-fade">ISO 9001:2015</span>
+        <h2 class="content-fade">Quality policy</h2>
+        <p class="content-fade">Robibon Construction Quality Policy aligned with ISO 9001:2015 requirements and continual improvement principles.</p>
+        <div class="policy__image content-fade"><Photo name="quality-policy.jpg" alt="Robibon Construction Quality Policy ISO 9001:2015" sizes="900px" widths={[600, 900, 1400]} /></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="focus surface-paper">
+    <div class="wrap row-v2">
+      <div class="section-heading">
+        <span class="eyebrow content-fade">Direction</span>
+        <h2 class="content-fade">Our focus</h2>
+      </div>
+      <div class="focus__grid grid-fade">
+        <div class="focus__card"><Icon name="mission" /><h3>Mission</h3><p>{MISSION}</p></div>
+        <div class="focus__card"><Icon name="vision" /><h3>Vision</h3><p>{VISION}</p></div>
+        <div class="focus__card focus__card--wide">
+          <Icon name="goals" /><h3>Goals</h3>
+          <ul>{GOALS.map((goal) => <li>{goal}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="values surface-dark">
+    <div class="wrap row-v2">
+      <div class="section-heading">
+        <span class="eyebrow content-fade">What guides us</span>
+        <h2 class="content-fade">Our core values</h2>
+      </div>
+      <div class="values__grid grid-fade">
+        {CORE_VALUES.map((value) => (
+          <div class="values__item"><Icon name={value.icon} /><h3>{value.title}</h3></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="expertise surface-paper">
+    <div class="wrap row-v2">
+      <div class="section-heading">
+        <span class="eyebrow content-fade">Expertise</span>
+        <h2 class="content-fade">Our services</h2>
+      </div>
+      <div class="expertise__list">
+        {SERVICES.map((service) => (
+          <div class="expertise__item content-fade">
+            <Icon name={service.icon} />
+            <h3>{service.title}</h3>
+            {service.text ? <p>{service.text}</p> : <p class="expertise__item-note">({service.note})</p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

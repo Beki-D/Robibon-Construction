@@ -1,16 +1,97 @@
 ---
+import Base from '../layouts/Base.astro'
+import Photo from '../components/Photo.astro'
+import Icon from '../components/Icon.astro'
+import Cta from '../components/Cta.astro'
+import { SERVICES, HERO_SLIDES, HOME_ABOUT, MISSION } from '../data/content'
+import { PROJECTS } from '../data/projects'
+import { galleryFor } from '../lib/gallery'
+
+const galleries = await Promise.all(PROJECTS.map(galleryFor))
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base title="Home" path="/" schema>
+  <section class="hero" id="home">
+    <div class="hero__slides">
+      {HERO_SLIDES.map((name, index) => (
+        <div class:list={['hero__slide', { 'is-active': index === 0 }]}>
+          <Photo name={name} eager={index === 0} sizes="100vw" />
+        </div>
+      ))}
+    </div>
+    <div class="wrap">
+      <div class="hero__content">
+        <h1 class="hero__title">Your reliable partner for creating the future</h1>
+        <p class="hero__sub">Roads, buildings and dams, built to last. Since 2015, turning aspirations into concrete reality.</p>
+      </div>
+    </div>
+    <a href="#about" class="hero__scroll" aria-label="Scroll to content"><Icon name="down" /></a>
+    <span class="hero__gradient"></span>
+  </section>
+
+  <section class="intro section-scale surface-paper" id="about">
+    <div class="background-scale"></div>
+    <div class="wrap row-v2">
+      <div class="intro__grid">
+        <div class="intro__media content-fade"><Photo name="adama-road-3.webp" alt="Completed asphalt road in Adama" sizes="(max-width: 1000px) 100vw, 600px" /></div>
+        <div class="intro__text">
+          <span class="eyebrow content-fade">About us</span>
+          <h2 class="content-fade">Your reliable partner for <span class="accent">creating the future</span></h2>
+          <p class="content-fade">{HOME_ABOUT}</p>
+          <a href="/about" class="button content-fade">Read more</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services surface-dark" id="services">
+    <div class="wrap row-v2">
+      <div class="section-heading">
+        <span class="eyebrow content-fade">What we build</span>
+        <h2 class="content-fade">Our services</h2>
+      </div>
+      <div class="services__grid grid-fade">
+        {SERVICES.map((service) => (
+          <div class="services__item">
+            <Icon name={service.icon} />
+            <h3>{service.title}</h3>
+            {service.note && <p class="services__item-note">({service.note})</p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="quote surface-paper">
+    <div class="wrap row-v2">
+      <span class="quote__mark" aria-hidden="true">&ldquo;</span>
+      <p class="quote__text">{MISSION}</p>
+      <p class="quote__by">Our mission</p>
+    </div>
+  </section>
+
+  <section class="featured surface-dark" id="projects">
+    <div class="wrap row-v2">
+      <div class="section-heading">
+        <span class="eyebrow content-fade">Selected work</span>
+        <h2 class="content-fade">Featured projects</h2>
+      </div>
+      <div class="featured__grid grid-fade">
+        {PROJECTS.map((project, index) => (
+          <button class="featured__card" type="button" data-gallery={galleries[index]} aria-label={`View photos of ${project.shortTitle}`}>
+            <div class="featured__image">
+              <Photo name={project.photos[0]} alt="" sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 400px" widths={[400, 700, 1000]} />
+            </div>
+            <div class="featured__meta">
+              <h3>{project.shortTitle}</h3>
+              <Icon name="plus" />
+            </div>
+          </button>
+        ))}
+      </div>
+      <div class="featured__more"><a href="/projects" class="button">See more projects</a></div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

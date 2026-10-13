@@ -1,0 +1,89 @@
+@use '../mixins' as *;
+
+.project {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 7rem;
+  align-items: center;
+  padding: 7rem 0;
+  border-top: 1px solid var(--color-line-dark);
+
+  &:first-child { border-top: 0; padding-top: 0; }
+  &:nth-child(even) { grid-template-columns: 1fr 1.15fr; .project__media { order: 2; } }
+
+  @include max(1000) {
+    grid-template-columns: 1fr;
+    gap: 3.4rem;
+    padding: 5rem 0;
+    &:nth-child(even) { grid-template-columns: 1fr; .project__media { order: 0; } }
+  }
+
+  &__media {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 0.4rem;
+    cursor: pointer;
+
+    .photo { width: 100%; height: 100%; }
+    .photo__img { transition: opacity 0.7s ease, transform 1s var(--ease-out); }
+    &:hover .photo__img { transform: scale(1.05); }
+  }
+
+  &__count {
+    position: absolute;
+    right: 1.6rem;
+    bottom: 1.6rem;
+    padding: 0.8rem 1.4rem;
+    border-radius: 10rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    background: rgba(10, 20, 17, 0.75);
+    backdrop-filter: blur(6px);
+  }
+
+  &__index {
+    display: block;
+    margin-bottom: 1.6rem;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+  }
+
+  h3 { font-size: 4rem; line-height: 1.1; @include max(600) { font-size: 3rem; } }
+
+  &__type {
+    margin-bottom: 2.4rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+  }
+
+  p { color: var(--color-ink-soft); }
+
+  &__facts {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 2.6rem;
+    font-size: 1.6rem;
+    dt { display: inline; font-weight: 700; color: var(--color-ink); }
+    dd { display: inline; margin: 0; }
+  }
+}
+
+.more {
+  padding-top: 7rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: clamp(3.6rem, 6vw, 6.4rem);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}

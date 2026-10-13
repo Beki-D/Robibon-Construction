@@ -1,0 +1,22 @@
+.toast {
+  position: fixed;
+  z-index: 300;
+  top: 2.4rem;
+  right: 2.4rem;
+  max-width: min(46rem, calc(100vw - 4.8rem));
+  padding: 2rem 2.4rem;
+  border-radius: 0.6rem;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: var(--color-white);
+  background: var(--color-primary);
+  box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.35);
+  animation: toast-in 0.45s var(--ease-out);
+
+  &--error { background: #b41410; }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(-1.6rem); }
+  to { opacity: 1; transform: none; }
+}

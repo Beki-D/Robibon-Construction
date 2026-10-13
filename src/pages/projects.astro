@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro'
+import PageHero from '../components/PageHero.astro'
+import Photo from '../components/Photo.astro'
+import Cta from '../components/Cta.astro'
+import { PROJECTS } from '../data/projects'
+import { galleryFor } from '../lib/gallery'
+
+const galleries = await Promise.all(PROJECTS.map(galleryFor))
+---
+
+<Base title="Projects" path="/projects" description="Road, building and dam projects completed by ROBIBON Construction across Ethiopia.">
+  <PageHero title="Projects" photo="finna-dam-4.webp" />
+
+  <section class="projects surface-paper">
+    <div class="wrap row-v2">
+      <div class="section-heading">
+        <span class="eyebrow content-fade">Portfolio</span>
+        <h2 class="content-fade">Some of our projects</h2>
+      </div>
+
+      {PROJECTS.map((project, index) => (
+        <article class="project" id={project.id}>
+          <button class="project__media content-fade" type="button" data-gallery={galleries[index]} aria-label={`View photos of ${project.title}`}>
+            <Photo name={project.photos[0]} alt={project.title} sizes="(max-width: 1000px) 100vw, 640px" widths={[480, 800, 1200]} />
+            <span class="project__count">{project.photos.length} photos</span>
+          </button>
+          <div class="project__info">
+            <span class="project__index content-fade">{String(index + 1).padStart(2, '0')}</span>
+            <h3 class="content-fade">{project.title}</h3>
+            <p class="project__type content-fade">{project.type}</p>
+            <p class="content-fade">{project.summary}</p>
+            <dl class="project__facts content-fade">
+              <div><dt>Status:</dt> <dd>{project.status}</dd></div>
+              <div><dt>Location:</dt> <dd>{project.location}</dd></div>
+            </dl>
+          </div>
+        </article>
+      ))}
+
+      <p class="more content-fade">And many more&hellip;</p>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

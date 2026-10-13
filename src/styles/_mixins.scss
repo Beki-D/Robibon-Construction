@@ -1,0 +1,29 @@
+// Breakpoints match the Weitz clone so type and spacing step down at the same widths.
+@mixin max($width) {
+  @media screen and (max-width: #{$width}px) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// Outlined text that fills with the brand gradient as `background-position` moves from 100% to 0% (scrubbed by GSAP).
+@mixin outline-fill($stroke: 1px) {
+  display: inline-block;
+  background-image: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: 100% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: $stroke var(--color-primary);
+  transform: translate3d(0, 0, 0);
+
+  @include reduced-motion {
+    background-position: 0% 50%;
+  }
+}

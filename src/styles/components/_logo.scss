@@ -1,0 +1,6 @@
+// The logo is painted from a data URI that is inlined into <head> (see layouts/Base.astro), so it needs no request.
+.logo {
+  display: block;
+  aspect-ratio: var(--logo-ratio, 1);
+  background: var(--logo-uri) center / contain no-repeat;
+}

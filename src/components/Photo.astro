@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets'
+import { photos, placeholderFor } from '../lib/photos'
+
+interface Props {
+  /** File name in src/assets/photos. */
+  name: string
+  alt?: string
+  sizes?: string
+  widths?: number[]
+  /** Above-the-fold images load eagerly. */
+  eager?: boolean
+  class?: string
+}
+
+const { name, alt = '', sizes = '100vw', widths = [480, 800, 1200, 1800], eager = false, class: className } = Astro.props
+const image = photos[name]
+if (!image) throw new Error(`Photo "${name}" not found in src/assets/photos`)
+const placeholder = await placeholderFor(name)
+---
+
+<div class:list={['photo', className]} style={`--placeholder:url(${placeholder})`}>
+  <Image
+    src={image}
+    alt={alt}
+    widths={widths}
+    sizes={sizes}
+    loading={eager ? 'eager' : 'lazy'}
+    decoding="async"
+    fetchpriority={eager ? 'high' : 'auto'}
+    class="photo__img"
+  />
+</div>

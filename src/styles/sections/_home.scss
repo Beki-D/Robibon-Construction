@@ -1,0 +1,276 @@
+@use '../mixins' as *;
+
+// Hero: pinned, outlined headline that fills as you scroll, photo slideshow behind, fade into the next section.
+.hero {
+  position: relative;
+  height: calc(1px + 100vh);
+  height: calc(1px + 100svh);
+  overflow: hidden;
+  background: var(--color-ink);
+
+  &__slides {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    opacity: 0.28;
+  }
+
+  &__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.8s ease;
+
+    &.is-active { opacity: 1; }
+    .photo { width: 100%; height: 100%; }
+    .photo__img { transform: scale(1.08); transition: opacity 0.7s ease, transform 9s linear; }
+    &.is-active .photo__img { transform: scale(1); }
+
+    @include reduced-motion {
+      transition: none;
+      .photo__img { transform: none; transition: opacity 0.7s ease; }
+    }
+  }
+
+  &__gradient {
+    position: absolute;
+    z-index: 2;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 33vh;
+    background: linear-gradient(rgba(10, 20, 17, 0) 0%, var(--color-ink) 98%);
+  }
+
+  .wrap {
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__content {
+    width: 100rem;
+    max-width: 90%;
+    margin-top: 12vh;
+
+    @include max(1270) { margin-left: 3vw; }
+    @include max(600) { max-width: 100%; margin: 6vh 0 0; }
+  }
+
+  &__title {
+    @include outline-fill(1px);
+    margin: 0;
+    padding-right: 5rem;
+    font-size: clamp(5.4rem, 9.6vw, 13.6rem);
+    line-height: 1;
+
+    @include max(880) { -webkit-text-stroke-width: 0.75px; }
+  }
+
+  &__sub {
+    margin: 5.5rem 0 0;
+    max-width: 62rem;
+    font-size: 2.2rem;
+    font-weight: 300;
+    line-height: 1.5;
+
+    @include max(600) { margin-top: 3rem; font-size: 1.8rem; }
+  }
+
+  &__scroll {
+    position: absolute;
+    z-index: 3;
+    bottom: 4rem;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 5.4rem;
+    height: 5.4rem;
+    border: 1px solid var(--color-line);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    animation: nudge 2.4s ease-in-out infinite;
+
+    @include max(880) { display: none; }
+    @include reduced-motion { animation: none; }
+  }
+}
+
+@keyframes nudge {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 0.8rem); }
+}
+
+// Intro / about on home
+.intro {
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+
+    @include max(1000) { grid-template-columns: 1fr; gap: 5rem; }
+  }
+
+  &__media {
+    aspect-ratio: 4 / 5;
+    border-radius: 0.4rem;
+    overflow: hidden;
+
+    .photo { width: 100%; height: 100%; }
+    @include max(1000) { aspect-ratio: 16 / 11; }
+  }
+
+  &__text p { color: var(--color-ink-soft); font-size: 2rem; }
+}
+
+// Services
+.services {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--color-line);
+    border-left: 1px solid var(--color-line);
+
+    @include max(1000) { grid-template-columns: repeat(2, 1fr); }
+    @include max(600) { grid-template-columns: 1fr; }
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: 34rem;
+    padding: 4rem 3.4rem;
+    border-right: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+    overflow: hidden;
+    transition: background-color 0.4s ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 3px;
+      background: var(--gradient-brand);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s var(--ease-out);
+    }
+
+    &:hover { background: rgba(255, 255, 255, 0.03); }
+    &:hover::before { transform: scaleX(1); }
+
+    .icon { width: 5rem; height: 5rem; color: var(--color-primary); }
+    h3 { margin: 0; font-size: 3.2rem; }
+    p { margin: 0; font-size: 1.7rem; opacity: 0.78; line-height: 1.7; }
+    &-note { margin-top: auto; font-size: 1.5rem; font-style: italic; color: var(--color-secondary); }
+  }
+}
+
+// Quote band
+.quote {
+  text-align: center;
+
+  &__mark {
+    display: block;
+    margin: 0 auto 3rem;
+    font-family: var(--font-display);
+    font-size: 16rem;
+    line-height: 0.6;
+    color: var(--color-primary);
+  }
+
+  &__text {
+    max-width: 105rem;
+    margin: 0 auto;
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 6.4vw, 8.4rem);
+    font-weight: 600;
+    line-height: 1.12;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+
+  // Word-by-word fill; GSAP SplitText wraps each word in .split-word.
+  &__text .split-word {
+    display: inline-block;
+    background-image: linear-gradient(90deg, var(--color-ink) 50%, rgba(10, 20, 17, 0.16) 50%);
+    background-size: 200% 100%;
+    background-position: 100% 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    @include reduced-motion { background-position: 0% 50%; }
+  }
+
+  &__by {
+    margin-top: 4rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+}
+
+// Featured projects (home)
+.featured {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+
+    @include max(1000) { grid-template-columns: repeat(2, 1fr); }
+    @include max(600) { grid-template-columns: 1fr; gap: 2.4rem; }
+  }
+
+  &__card {
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  &__image {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 0.4rem;
+
+    .photo { width: 100%; height: 100%; }
+    .photo__img { transition: opacity 0.7s ease, transform 1s var(--ease-out); }
+  }
+
+  &__card:hover &__image .photo__img { transform: scale(1.06); }
+
+  &__meta {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-top: 2rem;
+
+    h3 { margin: 0; font-size: 2.4rem; }
+    .icon {
+      width: 4.4rem;
+      height: 4.4rem;
+      padding: 1.2rem;
+      border: 1px solid var(--color-line);
+      border-radius: 50%;
+      transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.4s var(--ease-out);
+    }
+  }
+
+  &__card:hover &__meta .icon {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    transform: rotate(90deg);
+  }
+
+  &__more { margin-top: 6rem; text-align: center; }
+}

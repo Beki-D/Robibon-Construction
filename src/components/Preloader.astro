@@ -1,0 +1,11 @@
+---
+// First-visit loader: fixed logo with a thin brand-gradient progress line, lifted away by scripts/preloader.js.
+// Its layout rules are inlined in <head> (layouts/Base.astro) so it paints before the main stylesheet arrives.
+---
+
+<div id="preloader" aria-hidden="true">
+  <div class="preloader__inner">
+    <span class="logo preloader__logo"></span>
+    <div class="preloader__bar"><span class="preloader__fill"></span></div>
+  </div>
+</div>

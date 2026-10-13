@@ -1,0 +1,21 @@
+---
+import { ICONS, type IconName } from './icons'
+
+interface Props {
+  name: IconName
+  class?: string
+}
+
+const { name, class: className } = Astro.props
+const [width, height, , , path] = ICONS[name].icon
+---
+
+<svg
+  class:list={['icon', className]}
+  viewBox={`0 0 ${width} ${height}`}
+  aria-hidden="true"
+  focusable="false"
+  fill="currentColor"
+>
+  <path d={path as string}></path>
+</svg>

@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro'
+import PageHero from '../components/PageHero.astro'
+import Icon from '../components/Icon.astro'
+import { SITE } from '../config/site'
+---
+
+<Base title="Contact Us" path="/contact" description="Get in touch with ROBIBON Construction in Addis Ababa to start your road, building or dam project.">
+  <PageHero title="Contact us" photo="sululta-office-2.webp" />
+
+  <section class="contact surface-paper" id="contact">
+    <div class="wrap row-v2">
+      <p class="contact__lead content-fade">
+        If you have any questions or require assistance, our dedicated team is here to help. At ROBIBON Construction we take great pride in delivering top-quality construction services tailored to your needs. Get in touch today and let&rsquo;s turn your project ideas into reality.
+      </p>
+
+      <div class="contact__grid">
+        <div class="contact__cards grid-fade">
+          <div class="contact__card"><Icon name="phone" /><div><h4>Phone</h4><p><a href={SITE.phone.href}>{SITE.phone.display}</a></p></div></div>
+          <div class="contact__card"><Icon name="location" /><div><h4>Location</h4><p>{SITE.address}</p></div></div>
+          <div class="contact__card"><Icon name="email" /><div><h4>Email</h4><p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p></div></div>
+          <div class="contact__card"><Icon name="clock" /><div><h4>Working hours</h4>{SITE.hours.map((line) => <p>{line}</p>)}</div></div>
+        </div>
+
+        <form class="form content-fade" id="contact-form" novalidate={false}>
+          <h3>Get in touch</h3>
+          <input type="hidden" name="contact_number" />
+          <div class="form__row">
+            <div class="form__field"><label for="name">Name</label><input id="name" type="text" name="name" autocomplete="name" required /></div>
+            <div class="form__field"><label for="company">Company</label><input id="company" type="text" name="company" autocomplete="organization" /></div>
+          </div>
+          <div class="form__field"><label for="email">Email</label><input id="email" type="email" name="email" autocomplete="email" required /></div>
+          <div class="form__field"><label for="phone">Phone</label><input id="phone" type="tel" name="phone" autocomplete="tel" /></div>
+          <div class="form__field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+          <button class="button button--solid" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <iframe class="map" id="map" title="ROBIBON Construction office location" src={SITE.mapEmbed} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+</Base>

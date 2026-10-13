@@ -1,0 +1,43 @@
+// Design tokens: the single source for colour, type, spacing and motion. Component styles reference these only.
+:root {
+  // Brand
+  --color-primary: #1d9f74;
+  --color-secondary: #2aa6e4;
+  --gradient-brand: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+
+  // Surfaces and text
+  --color-ink: #0a1411;
+  --color-ink-raised: #111f1a;
+  --color-ink-soft: #4d5b56;
+  --color-light: #dfe8e4;
+  --color-paper: #f2f6f4;
+  --color-white: #fff;
+  --color-line: rgba(255, 255, 255, 0.14);
+  --color-line-dark: rgba(10, 20, 17, 0.14);
+
+  // Type
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-sans: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  // Layout
+  --header-height: 8.4rem;
+  --section-pad: 14.2rem;
+
+  // Motion
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(1, 0, 0, 1);
+  --ease-wipe: cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+@media screen and (max-width: 1000px) {
+  :root {
+    --header-height: 7rem;
+    --section-pad: 10rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    --section-pad: 7rem;
+  }
+}
